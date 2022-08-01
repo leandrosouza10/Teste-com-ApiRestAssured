@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 public class Pet {
     //Atributos
@@ -31,6 +33,11 @@ public class Pet {
         .then()
                 .log().all()
                 .statusCode(200)
+                .body("name", is("Snoopy"))
+                .body("status", is("available"))
+                .body("category.name", containsString("Dog"))
+                .body("tags.name",contains("sta"))
+
         ;
     }
 }
