@@ -73,9 +73,27 @@ public class Pet {
                 .log().all()
                 .body("status",is("sold"))
                 .body("name",is("Snoopy"))
+        ;
+    }
+    @Test (priority = 4)
+    public void excluirPet(){
+        String petId = "194754852";
+
+        given()
+                .contentType("application/json")
+                .log().all()
+
+        .when()
+                .delete(uri + "/" + petId)
+        .then()
+                .statusCode(200)
+                .log().all()
+                .body("code",is(200))
+                .body("type",is("unknown"))
+                .body("message",is(petId))
+
 
         ;
-
     }
 
 
