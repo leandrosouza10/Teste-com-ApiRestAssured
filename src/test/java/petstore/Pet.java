@@ -57,5 +57,26 @@ public class Pet {
         ;
     }
 
+    @Test (priority = 3)
+    public void alterarPet() throws IOException {
+        String jsonBody = lerJson("src/test/resources/dadosJson/pet2.json");
+
+        given()
+                .contentType("application/json")
+                .log().all()
+                .body(jsonBody)
+        .when()
+                .put(uri )
+
+        .then()
+                .statusCode(200)
+                .log().all()
+                .body("status",is("sold"))
+                .body("name",is("Snoopy"))
+
+        ;
+
+    }
+
 
 }
